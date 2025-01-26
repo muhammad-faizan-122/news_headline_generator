@@ -13,6 +13,13 @@ install requirements
 ```
 pip install -r requirements.txt
 ```
+Install ollama and pull modellocakky
+
+To install ollama refer [here](https://ollama.com/download) according to your system OS.
+To pull model use following command
+```
+ollama run deepseek-r1:1.5b
+```
 
 run app
 ```
