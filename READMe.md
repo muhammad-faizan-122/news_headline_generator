@@ -1,5 +1,5 @@
 # Headline Generator App
-Given the detail of news and generate headline using FlanT5 pretrained Language model on new headlines. For detail of FlanT5 pretrained Language model you can refer here.
+Given the detail of news and generate headline using FlanT5 pretrained Language model on new headlines. For detail of FlanT5 pretrained Language model you can refer [here](https://huggingface.co/mrm8488/t5-base-finetuned-summarize-news).
 ## Demo
 ![alt text](demo/1.png)
 ![alt text](demo/2.png)
