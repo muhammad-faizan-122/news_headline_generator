@@ -1,5 +1,5 @@
 import streamlit as st
-from summarization import FlanT5
+from summarization import FlanT5, OllamaLLM
 import time
 
 
@@ -8,7 +8,8 @@ class HeadlineGenerator:
         # print(f"st.session_state: {st.session_state}")
         if "model" not in st.session_state:
             s = time.time()
-            st.session_state["model"] = FlanT5()
+            # st.session_state["model"] = FlanT5()
+            st.session_state["model"] = OllamaLLM("deepseek-r1:1.5b")
             e = time.time()
             print(f"Summarizer loaded in {e - s:.2f} seconds.")
         else:
