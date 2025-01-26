@@ -4,3 +4,4 @@ streamlit==1.41.1
 blobfile==3.0.0
 torch==2.5.1
 sentencepiece==0.2.0
+ollama==0.4.70.4.7
