@@ -1,0 +1,6 @@
+transformers==4.48.1
+tiktoken==0.8.0
+streamlit==1.41.1
+blobfile==3.0.0
+torch==2.5.1
+sentencepiece==0.2.0
