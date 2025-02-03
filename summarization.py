@@ -1,4 +1,5 @@
 from transformers import AutoModelWithLMHead, AutoTokenizer
+from prompts.headline_generator import prompt
 import ollama
 import re
 
@@ -52,9 +53,11 @@ class OllamaLLM(Summarizer):
     def __init__(self, model):
         self.model = model
 
-    def _remove_think_tags(self, text):
-        filtered_text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
-        return filtered_text
+    def extract_output(self, text):
+        reason = " ".join(re.findall(r"<think>(.*?)</think>", text, flags=re.DOTALL))
+        print(f"reason: {reason}")
+        headline = re.split(r"</think>", text)[-1].strip()
+        return reason, headline
 
     def summarize(self, news):
         try:
@@ -63,21 +66,18 @@ class OllamaLLM(Summarizer):
                 messages=[
                     {
                         "role": "system",
-                        "content": """You are expert in converting news detail into headline for TV news agencies. \
-                            Given news detail your task is return attractive headline for watcher without missing information""",
+                        "content": prompt,
                     },
                     {
                         "role": "user",
-                        "content": news,
+                        "content": f"News detail: ```{news}``` Headline: ",
                     },
                 ],
             )
             headline = response["message"]["content"]
             # Remove think tags from the generated headline to avoid repeating content
-            filter_headline = (
-                self._remove_think_tags(headline) if headline else headline
-            )
-            return filter_headline
+            reason, headline = self.extract_output(headline) if headline else headline
+            return reason, headline
 
         except Exception as e:
             return f"{self.model} failed to generate Headline due to {e}"

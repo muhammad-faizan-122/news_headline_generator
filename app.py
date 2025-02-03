@@ -27,7 +27,7 @@ class HeadlineGenerator:
             if input_text:
                 s = time.time()
                 # Placeholder for headline generation logic
-                headline = st.session_state["model"].summarize(input_text)
+                _, headline = st.session_state["model"].summarize(input_text)
                 e = time.time()
                 print(f"Headline generated in {e - s:.2f} seconds.")
                 st.subheader("Generated Headline:")
