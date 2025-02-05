@@ -6,3 +6,4 @@ torch==2.5.1
 sentencepiece==0.2.0
 ollama==0.4.7
 contractions==0.1.73
+loguru==0.7.3
